@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'text_titles.dart';
 import 'theme.dart';
-
+import 'buttons.dart';
 
 void main() {
   runApp(
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: site_title,
+      title: siteTitle,
       theme: AppTheme.lightTheme,
       //darkTheme: AppTheme.darkTheme,
       home: const MyHomePage(),
@@ -29,15 +29,46 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-
-        title: Text(cafe_name),
+      // appBar: AppBar(
+      //   title: Text(cafe_name),
+      // ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 50),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              const SizedBox(
+                width: 300,
+                child: Text(
+                  buonVenuto,
+                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                  // style: Theme.of(context).textTheme.bodyLarge, // Применяем стиль из темы
+                ),
+              ),
+              const SizedBox(height: 20),
+              // Добавляем отступ между текстом и изображением
+              Image.asset(
+                'assets/images/waiter.png', // Путь к вашему изображению
+                width: 350,
+                height: 450,
+              ),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  StartButton(
+                      buttonText: callWaiter, underButtonText: nullText),
+                  SizedBox(width: 10),
+                  StartButton(
+                      buttonText: orderYourself, underButtonText: discount),
+                ],
+              ),
+            ],
+          ),
         ),
-
-    // body: Text(),
-    //
+      ),
     );
   }
 }
-
-

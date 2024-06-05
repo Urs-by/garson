@@ -1,3 +1,8 @@
 
-final site_title = "Garson";
-final cafe_name = "Маркони";
+const siteTitle = "Garson";
+const cafeName = "Маркони";
+const buonVenuto = "Добро пожаловать в наш ресторан!";
+const callWaiter = "Позвать официанта";
+const orderYourself = "Заказать самостоятельно";
+const discount  = "Скидка 3%";
+const nullText = '';

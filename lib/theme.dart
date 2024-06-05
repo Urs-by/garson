@@ -4,6 +4,7 @@ import 'colors.dart'; // Импортируйте ваш файл с цвета�
 class AppTheme {
   static ThemeData get lightTheme {
     return ThemeData(
+      scaffoldBackgroundColor: AppColors.backgroundColor,
       colorScheme: const ColorScheme.light(
         primary: AppColors.primaryColor, //primary -
         // Основной цвет приложения. Используется для элементов интерфейса
@@ -16,8 +17,6 @@ class AppTheme {
         //Цвет элементов, которые располагаются на фоне primary
         onSecondary: AppColors.accentColor, // onSecondary -
         //Цвет элементов, которые располагаются на фоне secondary.
-        background: AppColors.backgroundColor,// background -
-        //Цвет фона основных поверхностей приложения (например, Scaffold).
         surface: AppColors.surfaceColor,// surface - Цвет поверхности
         // элементов интерфейса, таких как карточки, листы, меню и диалоги.
         onSurface: Colors.black,//onSurface -
@@ -32,7 +31,7 @@ class AppTheme {
         iconTheme: IconThemeData(color: AppColors.accentColor,),
       ),
       textTheme: const TextTheme(
-        bodyLarge: TextStyle(color: AppColors.primaryColor),
+        bodyLarge: TextStyle(color: AppColors.primaryColor, fontSize: 30),
         // bodyMedium: TextStyle(color: Colors.grey, fontSize: 14),
         // headlineLarge: TextStyle(color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
         // headlineSmall: TextStyle(color: Colors.black, fontSize: 20),
