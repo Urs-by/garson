@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'text_titles.dart';
 import 'theme.dart';
 import 'buttons.dart';
+import 'pages.dart';
 
 void main() {
   runApp(
@@ -33,7 +34,7 @@ class MyHomePage extends StatelessWidget {
       //   title: Text(cafe_name),
       // ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 50),
+        padding: const EdgeInsets.symmetric(vertical: 20),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -48,7 +49,13 @@ class MyHomePage extends StatelessWidget {
                   // style: Theme.of(context).textTheme.bodyLarge, // Применяем стиль из темы
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(
+                height: 25,
+                child: Text(
+                  yourTable,
+                  style: TextStyle(fontSize: 20),
+                ),
+              ),
               // Добавляем отступ между текстом и изображением
               Image.asset(
                 'assets/images/waiter.png', // Путь к вашему изображению
@@ -59,10 +66,14 @@ class MyHomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   StartButton(
-                      buttonText: callWaiter, underButtonText: nullText),
-                  SizedBox(width: 10),
+                      buttonText: callWaiter,
+                      page: FirstPage(),
+                      underButtonText: nullText),
+                  SizedBox(width: 30),
                   StartButton(
-                      buttonText: orderYourself, underButtonText: discount),
+                      buttonText: orderYourself,
+                      page: SecondPage(),
+                      underButtonText: discount),
                 ],
               ),
             ],
