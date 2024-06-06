@@ -34,7 +34,7 @@ class MyHomePage extends StatelessWidget {
       //   title: Text(cafe_name),
       // ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20),
+        padding: const EdgeInsets.symmetric(vertical: 15),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -60,7 +60,7 @@ class MyHomePage extends StatelessWidget {
               Image.asset(
                 'assets/images/waiter.png', // Путь к вашему изображению
                 width: 350,
-                height: 450,
+                height: 350,
               ),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -69,7 +69,7 @@ class MyHomePage extends StatelessWidget {
                       buttonText: callWaiter,
                       page: FirstPage(),
                       underButtonText: nullText),
-                  SizedBox(width: 30),
+                  SizedBox(width: 15),
                   StartButton(
                       buttonText: orderYourself,
                       page: SecondPage(),
