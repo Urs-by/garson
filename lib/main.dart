@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'text_titles.dart';
 import 'theme.dart';
 import 'buttons.dart';
-import 'pages.dart';
+import 'pages/call_waiter.dart';
+import 'pages/order_page.dart';
 
 void main() {
   runApp(
@@ -67,12 +68,12 @@ class MyHomePage extends StatelessWidget {
                 children: <Widget>[
                   StartButton(
                       buttonText: callWaiter,
-                      page: FirstPage(),
+                      page: CallWaiter(),
                       underButtonText: nullText),
                   SizedBox(width: 15),
                   StartButton(
                       buttonText: orderYourself,
-                      page: SecondPage(),
+                      page: OrderPage(),
                       underButtonText: discount),
                 ],
               ),
