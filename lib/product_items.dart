@@ -6,7 +6,7 @@ class Product {
   final String itemName;
   final String price;
   final String description;
-  final String? weight;
+  final String weight;
   final String additionalInfo;
 
   Product(
@@ -14,12 +14,11 @@ class Product {
       required this.itemName,
       required this.price,
       required this.description,
-      this.weight,
+      required this.weight,
       required this.additionalInfo});
 }
 
 class ProductListScreen extends StatefulWidget {
-
   const ProductListScreen({super.key});
 
   @override
@@ -64,25 +63,27 @@ class ProductCard extends StatelessWidget {
       child: Card(
         child: Row(
           children: [
-            SizedBox(
-              width: 150,
-              height: 150,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10.0),
+              child: SizedBox(
+                width: 115,
+                height: 115,
 
-              // MediaQuery.of(context).size.width / 2,
-              child: Image.network(
-                product.imageUrl,
-                fit: BoxFit.cover,
-                errorBuilder: (BuildContext context, Object exception,
-                    StackTrace? stackTrace) {
-                  return Container(
-
-                    color: Colors.grey,
-                    child: const Icon(
-                      Icons.error,
-                      color: Colors.red,
-                    ),
-                  );
-                },
+                // MediaQuery.of(context).size.width / 2,
+                child: Image.network(
+                  product.imageUrl,
+                  fit: BoxFit.cover,
+                  errorBuilder: (BuildContext context, Object exception,
+                      StackTrace? stackTrace) {
+                    return Container(
+                      color: Colors.grey,
+                      child: const Icon(
+                        Icons.error,
+                        color: Colors.red,
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
             Expanded(
@@ -91,12 +92,42 @@ class ProductCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
+                    Row(
+                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Expanded(
+                          flex: 5,
+                          child: Wrap(
+                            children: [
+                              Text(product.itemName,
+                                  style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Wrap(
+                            children: [
+                              Text(
+                                product.weight,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(product.description,
+                        style: const TextStyle(fontSize: 16)),
+                    const SizedBox(height: 10),
                     Text(product.price,
                         style: const TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 10),
-                    Text(product.description,
-                        style: const TextStyle(fontSize: 16)),
                   ],
                 ),
               ),
@@ -124,19 +155,53 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Product Detail'),
+        automaticallyImplyLeading: false,
+        flexibleSpace: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  children: [
+                    Text(
+                      widget.product.itemName,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
       body: Column(
         children: [
-          Text(widget.product.itemName),
+          // Text(widget.product.itemName,
+          // style: const TextStyle(
+          //     fontSize: 16, fontWeight: FontWeight.bold)),
+          // const SizedBox(height: 20,),
           SizedBox(
-              height: 350,
-              width: 350,
+              height: 300,
+              width: 300,
               child: Image.network(widget.product.imageUrl, fit: BoxFit.cover)),
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Text(widget.product.additionalInfo,
-                style: const TextStyle(fontSize: 18)),
+            child: Column(
+              children: [
+                // Text(widget.product.weight,
+                //     style: const TextStyle(fontSize: 18)),
+                // const SizedBox(height: 5),
+                Text(widget.product.description,
+                    style: const TextStyle(fontSize: 18)),
+                const SizedBox(height: 5),
+                Text(widget.product.additionalInfo,
+                    style: const TextStyle(fontSize: 18)),
+              ],
+            ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

@@ -7,6 +7,7 @@ const orderYourself = "Заказать самостоятельно";
 const discount  = "Скидка 3%";
 const nullText = " ";
 const yourTable = "Ваш столик №";
+const yourOrder = "Ваш заказ:";
 const byn = "руб.";
 const order = "Заказать";
 const editOrder = "Дозаказать";

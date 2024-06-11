@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:garson/buttons.dart';
+import 'package:garson/temp_data.dart';
+// import 'package:garson/buttons.dart';
 import 'package:garson/text_titles.dart';
-// import 'package:garson/temp_data.dart';
+import 'package:garson/colors.dart';
 import 'order_page.dart';
 
 class FinalOrder extends StatelessWidget {
@@ -24,34 +25,27 @@ class FinalOrder extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text(
+                        const Text(
                           '5',
-                          style: const TextStyle(fontSize: 20),
+                          style: TextStyle(fontSize: 20),
                         ),
                         Image.asset('assets/images/table.png',
                             height: 20, width: 50),
                       ],
                     ),
                   ),
-
-                  Text('Ваш заказ:'),
-                  // Column(
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  // children: <Widget>[
-                  //     Image.asset('assets/images/logo.png', height: 50, width: 50),
-                  //    ],
-                  // ),
-                  SizedBox(
+                  const Text(yourOrder),
+                  const SizedBox(
                     child: Column(
                       // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         Text(
                           '22.40',
                           // amount.toStringAsFixed(2),
-                          style: const TextStyle(fontSize: 20),
+                          style: TextStyle(fontSize: 20),
                         ),
 
-                        const Text(
+                        Text(
                           byn,
                         )
                         // Image.asset('assets/amount_icon.png', height: 30, width: 30),
@@ -64,33 +58,102 @@ class FinalOrder extends StatelessWidget {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
+      body: const DishList(),
+      bottomNavigationBar: Container(
+        // color: Colors.white,
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            SizedBox(
-              height: 350,
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const OrderPage()),
+                );
+              },
+              style: TextButton.styleFrom(
+                backgroundColor: AppColors.buttonBackgroundColor,),
+              child: const Text(editOrder),
             ),
-            // Ваш контент, который будет скроллироваться
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  StartButton(
-                      buttonText: editOrder,
-                      page: OrderPage(),
-                      underButtonText: nullText),
-                  SizedBox(width: 15),
-                  StartButton(
-                      buttonText: order,
-                      page: OrderPage(),
-                      underButtonText: nullText),
-                ],
-              ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const OrderPage()),
+                );
+              },
+              style: TextButton.styleFrom(
+                backgroundColor: AppColors.buttonBackgroundColor,),
+              child: const Text(order),
             ),
           ],
         ),
       ),
     );
   }
+}
+
+class DishList extends StatefulWidget {
+  const DishList({super.key});
+
+  @override
+  _DishListState createState() => _DishListState();
+}
+
+class _DishListState extends State<DishList> {
+  // Список блюд и их количество
+  final List<Map<String, dynamic>> _dishes = disheslist;
+
+
+  // Метод для увеличения количества
+  void _incrementQuantity(int index) {
+    setState(() {
+      if (_dishes[index]['quantity'] < 99) {
+        _dishes[index]['quantity']++;
+      }
+    });
+  }
+
+  // Метод для уменьшения количества
+  void _decrementQuantity(int index) {
+    setState(() {
+      if (_dishes[index]['quantity'] > 0) {
+        _dishes[index]['quantity']--;
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: _dishes.length,
+      itemBuilder: (context, index) {
+        double totalPrice = _dishes[index]['quantity'] * _dishes[index]['price'];
+        return ListTile(
+          title: Text(_dishes[index]['name'],
+            style: const TextStyle(fontSize: 22), ),
+          subtitle: Text('Сумма: ${totalPrice.toStringAsFixed(2)}'),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              IconButton(
+                icon: const Icon(Icons.remove),
+                onPressed: () => _decrementQuantity(index),
+              ),
+              Text(
+                _dishes[index]['quantity'].toString(),
+                style: const TextStyle(fontSize: 18), // Уменьшаем размер шрифта
+              ),
+              IconButton(
+                icon: const Icon(Icons.add),
+                onPressed: () => _incrementQuantity(index),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
 }

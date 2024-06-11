@@ -160,7 +160,7 @@ class _OrderState extends State<Order> {
     return Column(
       children: [
         SizedBox(
-          height: 150, // высота контейнера для категорий
+          height: 80, // высота контейнера для категорий
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
