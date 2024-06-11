@@ -67,6 +67,7 @@ class ProductCard extends StatelessWidget {
             SizedBox(
               width: 150,
               height: 150,
+
               // MediaQuery.of(context).size.width / 2,
               child: Image.network(
                 product.imageUrl,
@@ -74,6 +75,7 @@ class ProductCard extends StatelessWidget {
                 errorBuilder: (BuildContext context, Object exception,
                     StackTrace? stackTrace) {
                   return Container(
+
                     color: Colors.grey,
                     child: const Icon(
                       Icons.error,
