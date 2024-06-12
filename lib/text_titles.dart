@@ -11,3 +11,4 @@ const yourOrder = "Ваш заказ:";
 const byn = "руб.";
 const order = "Заказать";
 const editOrder = "Дозаказать";
+const confirm = "Ваш заказ принят!";

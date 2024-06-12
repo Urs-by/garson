@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:garson/pages/confirm_order.dart';
 import 'package:garson/temp_data.dart';
 // import 'package:garson/buttons.dart';
 import 'package:garson/text_titles.dart';
@@ -62,32 +63,37 @@ class FinalOrder extends StatelessWidget {
       bottomNavigationBar: Container(
         // color: Colors.white,
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const OrderPage()),
-                );
-              },
-              style: TextButton.styleFrom(
-                backgroundColor: AppColors.buttonBackgroundColor,),
-              child: const Text(editOrder),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const OrderPage()),
-                );
-              },
-              style: TextButton.styleFrom(
-                backgroundColor: AppColors.buttonBackgroundColor,),
-              child: const Text(order),
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 18.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const OrderPage()),
+                  );
+                },
+                style: TextButton.styleFrom(
+                  backgroundColor: AppColors.buttonBackgroundColor,),
+                child: const Text(editOrder,
+                  style: TextStyle(fontSize: 20),),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ConfirmOrder()),
+                  );
+                },
+                style: TextButton.styleFrom(
+                  backgroundColor: AppColors.buttonBackgroundColor,),
+                child: const Text(order,
+                  style: TextStyle(fontSize: 20),),
+              ),
+            ],
+          ),
         ),
       ),
     );

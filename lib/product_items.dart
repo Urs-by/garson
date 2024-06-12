@@ -155,7 +155,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        // automaticallyImplyLeading: false,
         flexibleSpace: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
