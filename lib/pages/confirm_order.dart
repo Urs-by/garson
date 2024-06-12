@@ -3,27 +3,28 @@ import 'package:garson/text_titles.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
 class ConfirmOrder extends StatefulWidget {
-  const ConfirmOrder({Key? key}) : super(key: key);
+  const ConfirmOrder({super.key});
 
   @override
   State<ConfirmOrder> createState() => _ConfirmOrderState();
 }
 
 class _ConfirmOrderState extends State<ConfirmOrder> {
-  final int _duration = 100;
+  final int _duration = 10;
   final CountDownController _controller = CountDownController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text(confirm),
       ),
       body: Center(
         child: CircularCountDownTimer(
-          duration: 10,
+          duration: _duration,
           initialDuration: 0,
-          controller: CountDownController(),
+          controller: _controller,
           width: MediaQuery.of(context).size.width / 2,
           height: MediaQuery.of(context).size.height / 2,
           ringColor: Colors.grey[300]!,
@@ -34,46 +35,27 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
           backgroundGradient: null,
           strokeWidth: 20.0,
           strokeCap: StrokeCap.round,
-          textStyle: TextStyle(
+          textStyle: const TextStyle(
               fontSize: 33.0, color: Colors.white, fontWeight: FontWeight.bold),
           textFormat: CountdownTextFormat.S,
-          isReverse: false,
+          isReverse: true,
           isReverseAnimation: false,
           isTimerTextShown: true,
           autoStart: true,
-          onStart: () {
-            debugPrint('Countdown Started');
-          },
+          // onStart: () {
+          //   debugPrint('Ураа');
+          // },
           onComplete: () {
-            debugPrint('Countdown Ended');
+
+            _controller.restart(duration: _duration);
           },
           onChange: (String timeStamp) {
             debugPrint('Countdown Changed $timeStamp');
           },
-          timeFormatterFunction: (defaultFormatterFunction, duration) {
-            if (duration.inSeconds == 0) {
-              return "Уже несут";
-            } else {
-              return Function.apply(defaultFormatterFunction, [duration]);
-            }
-          },
+
         ),
       )
     );
   }
 }
 
-// Widget _button({required String title, VoidCallback? onPressed}) {
-//   return Expanded(
-//     child: ElevatedButton(
-//       style: ButtonStyle(
-//         backgroundColor: MaterialStateProperty.all(Colors.purple),
-//       ),
-//       onPressed: onPressed,
-//       child: Text(
-//         title,
-//         style: const TextStyle(color: Colors.white),
-//       ),
-//     ),
-//   );
-// }
