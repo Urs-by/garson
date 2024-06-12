@@ -15,7 +15,7 @@ class FinalOrder extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70.0),
         child: AppBar(
-          automaticallyImplyLeading: true,
+          automaticallyImplyLeading: false,
           flexibleSpace: SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -35,7 +35,7 @@ class FinalOrder extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const Text(yourOrder),
+                  const Text(yourOrder, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
                   const SizedBox(
                     child: Column(
                       // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -136,27 +136,37 @@ class _DishListState extends State<DishList> {
       itemCount: _dishes.length,
       itemBuilder: (context, index) {
         double totalPrice = _dishes[index]['quantity'] * _dishes[index]['price'];
-        return ListTile(
-          title: Text(_dishes[index]['name'],
-            style: const TextStyle(fontSize: 22), ),
-          subtitle: Text('Сумма: ${totalPrice.toStringAsFixed(2)}'),
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              IconButton(
-                icon: const Icon(Icons.remove),
-                onPressed: () => _decrementQuantity(index),
+        return Column(
+          children: [
+            ListTile(
+              title: Text(
+                _dishes[index]['name'],
+                style: const TextStyle(fontSize: 22),
               ),
-              Text(
-                _dishes[index]['quantity'].toString(),
-                style: const TextStyle(fontSize: 18), // Уменьшаем размер шрифта
+              subtitle: Text('Сумма: ${totalPrice.toStringAsFixed(2)}'),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  IconButton(
+                    icon: const Icon(Icons.remove),
+                    onPressed: () => _decrementQuantity(index),
+                  ),
+                  Text(
+                    _dishes[index]['quantity'].toString(),
+                    style: const TextStyle(fontSize: 18),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.add),
+                    onPressed: () => _incrementQuantity(index),
+                  ),
+                ],
               ),
-              IconButton(
-                icon: const Icon(Icons.add),
-                onPressed: () => _incrementQuantity(index),
-              ),
-            ],
-          ),
+            ),
+            const Divider( // Разделитель между элементами списка
+              color: Colors.grey,
+              thickness: 1, // Толщина разделителя
+            ),
+          ],
         );
       },
     );

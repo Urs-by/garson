@@ -4,7 +4,7 @@ import 'package:garson/text_titles.dart';
 import "package:garson/colors.dart";
 import 'package:garson/temp_data.dart';
 import 'package:garson/product_items.dart';
-
+import 'package:garson/main.dart';
 
 class OrderPage extends StatefulWidget {
   const OrderPage({super.key});
@@ -39,19 +39,27 @@ class _OrderPageState extends State<OrderPage> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70.0), // высота AppBar
         child: AppBar(
-          automaticallyImplyLeading: true,
+          automaticallyImplyLeading: false,
           flexibleSpace: SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  SizedBox(
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    decoration: BoxDecoration(
+                      color: Colors.orangeAccent, // Цвет фона контейнера
+                      borderRadius:
+                          BorderRadius.circular(10), // Закругление углов
+                      // Другие свойства оформления, например, gradient, boxShadow и т.д.
+                    ),
                     child: GestureDetector(
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const FinalOrder()),
+                          MaterialPageRoute(
+                              builder: (context) => const FinalOrder()),
                         );
                       },
                       child: Column(
@@ -67,19 +75,37 @@ class _OrderPageState extends State<OrderPage> {
                       ),
                     ),
                   ),
-                  Image.asset('assets/images/logo.png', height: 50, width: 50),
+                  GestureDetector(
+                    child: Image.asset('assets/images/logo.png',
+                        height: 50, width: 50),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MyHomePage()),
+                      );
+                    },
+                  ),
                   // Column(
                   // mainAxisAlignment: MainAxisAlignment.center,
                   // children: <Widget>[
                   //     Image.asset('assets/images/logo.png', height: 50, width: 50),
                   //    ],
                   // ),
-                  SizedBox(
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    decoration: BoxDecoration(
+                      color: Colors.orangeAccent, // Цвет фона контейнера
+                      borderRadius:
+                          BorderRadius.circular(10), // Закругление углов
+                      // Другие свойства оформления, например, gradient, boxShadow и т.д.
+                    ),
                     child: GestureDetector(
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const FinalOrder()),
+                          MaterialPageRoute(
+                              builder: (context) => const FinalOrder()),
                         );
                       },
                       child: Column(
